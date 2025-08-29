@@ -1,27 +1,16 @@
-import React from 'react';
+import React from "react";
 import BaseTemplate from "../components/layout/BaseTemplate";
-import LandingContent from "./Landing/LandingContent.jsx";
+import DriverContent from "./driver/driverContent.jsx";
 
 const DriverDashboard = ({ user }) => {
+  console.log("DriverContent render: user", user);
   return (
-    <div>ESTOUAS
-      ESTOUAS
-  const [user, setUser] = useState("");
-  const [user, setUser] = useState("");
-  const [user, setUser] = useState("");
-  const [user, setUser] = useState("");
-  const [user, setUser] = useState("");
-  const [user, setUser] = useState("");
-  const [user, setUser] = useState("");
-  const [user, setUser] = useState("");
-  const [user, setUser] = useState("");
-  const [user, setUser] = useState("");
-  const [user, setUser] = useState("");
-    </div>
+    <BaseTemplate>
+      <DriverContent></DriverContent>
+    </BaseTemplate>
   );
-}
+};
 export default DriverDashboard;
-
 
 
 

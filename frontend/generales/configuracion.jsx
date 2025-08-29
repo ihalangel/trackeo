@@ -1,6 +1,6 @@
   const linkApp ='http://localhost:4000'; 
   // const linkApp = '';
- const consoleEnabled = false; // Renombrado
+ const consoleEnabled = true; // Renombrado
 
 
 

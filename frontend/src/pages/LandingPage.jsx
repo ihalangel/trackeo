@@ -88,14 +88,20 @@ import LandingContent from "./Landing/LandingContent.jsx";
 import { Outlet } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext.jsx";
 
+
 export default function LandingPage() {
   const { user } = useAuthContext();
 
   return (
     <BaseTemplate>
-      {!user && <LandingContent />}
-      {!user && <LoginFlow />}
-      <Outlet /> {/* Aquí se renderizan las páginas hijas, como DriverDashboard */}
+      {!user ? (
+        <>
+          <LandingContent />
+          <LoginFlow />
+        </>
+      ) : (
+        <Outlet /> // Mostrar rutas hijas solo si usuario está autenticado
+      )}
     </BaseTemplate>
   );
 }
