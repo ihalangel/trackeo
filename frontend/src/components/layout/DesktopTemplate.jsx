@@ -1,16 +1,13 @@
 // src/components/layout/DesktopTemplate.jsx
 
-import React from 'react';
-import NavbarDesktop from '../navBarDesktop/NavbarDesktop'; // Crea este componente para desktop
-import BackgroundImage from './../BackgroundImage.jsx';
-
+import React from "react";
+import NavbarDesktop from "../navBarDesktop/navBarDesktop"; // Crea este componente para desktop
+import BackgroundImage from "./../BackgroundImage.jsx";
 
 export default function DesktopTemplate({ children }) {
   return (
-      <div className="relative  min-h-screen w-screen">
-        {/*<div className="relative   mx-auto px-8 py-6">*/}
-
-
+    <div className="relative  min-h-screen w-screen">
+      {/*<div className="relative   mx-auto px-8 py-6">*/}
 
       {/* Fondo */}
       <BackgroundImage />
@@ -21,9 +18,7 @@ export default function DesktopTemplate({ children }) {
       </div>
 
       {/* Contenido principal */}
-      <main className="relative z-10 max-w-6xl mx-auto p-8">
-        {children}
-      </main>
+      <main className="relative z-10 max-w-6xl mx-auto p-8">{children}</main>
     </div>
   );
 }
