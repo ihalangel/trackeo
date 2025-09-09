@@ -86,13 +86,71 @@
 
 
 
-import React from "react";
+// import React from "react";
+// import { TrackingProvider, useTracking } from "./../../../context/Dasboards/TrackingContextAdmin.jsx";
+// import DatosBasicos from "./RegistroCarga/DatosBasicos";
+// import Ubicaciones from "./RegistroCarga/Ubicaciones";
+// import NotasConfirmacion from "./RegistroCarga/NotasConfirmacion";
+
+// // El wrapper coloca el provider SOLO alrededor del formulario tracking
+// export default function RegistroCargaWrapper({ cargaInicial, onGuardar, onCancelar }) {
+//   return (
+//     <TrackingProvider cargaInicial={cargaInicial} onGuardar={onGuardar} onCancelar={onCancelar}>
+//       <RegistroCarga />
+//     </TrackingProvider>
+//   );
+// }
+
+// function RegistroCarga() {
+//   const {
+//     paso,
+//     siguiente,
+//     anterior,
+//     guardar,
+//     cancelar,
+//   } = useTracking();
+
+//   return (
+//     <div style={{
+//       border: "1px solid #ddd",
+//       borderRadius: 8,
+//       padding: 16,
+//       marginBottom: 20,
+//       fontFamily: "Arial, sans-serif"
+//     }}>
+//       {paso === 1 && <DatosBasicos />}
+//       {paso === 2 && <Ubicaciones />}
+//       {paso === 3 && <NotasConfirmacion />}
+
+//       <div style={{ display: "flex", justifyContent: "space-between", marginTop: 20 }}>
+//         {paso > 1 ? (
+//           <button type="button" onClick={anterior}>Anterior</button>
+//         ) : (
+//           <button type="button" onClick={cancelar}>Cancelar</button>
+//         )}
+//         {paso < 3 ? (
+//           <button type="button" onClick={siguiente}>Siguiente</button>
+//         ) : (
+//           <button type="button" onClick={guardar}>Guardar carga</button>
+//         )}
+//       </div>
+//     </div>
+//   );
+// }
+
+
+
+
+
+
+
+
+import React, { useState } from "react";
 import { TrackingProvider, useTracking } from "./../../../context/Dasboards/TrackingContextAdmin.jsx";
 import DatosBasicos from "./RegistroCarga/DatosBasicos";
 import Ubicaciones from "./RegistroCarga/Ubicaciones";
 import NotasConfirmacion from "./RegistroCarga/NotasConfirmacion";
 
-// El wrapper coloca el provider SOLO alrededor del formulario tracking
 export default function RegistroCargaWrapper({ cargaInicial, onGuardar, onCancelar }) {
   return (
     <TrackingProvider cargaInicial={cargaInicial} onGuardar={onGuardar} onCancelar={onCancelar}>
@@ -101,23 +159,54 @@ export default function RegistroCargaWrapper({ cargaInicial, onGuardar, onCancel
   );
 }
 
+function ResumenFinal() {
+  const { form } = useTracking();
+  return (
+    <div>
+      <h2>Resumen completo de la carga</h2>
+      <pre>{JSON.stringify(form, null, 2)}</pre>
+      {/* Aquí se puede mejorar el diseño con tablas o listados */}
+    </div>
+  );
+}
+
 function RegistroCarga() {
-  const {
-    paso,
-    siguiente,
-    anterior,
-    guardar,
-    cancelar,
-  } = useTracking();
+  const { form, guardar, cancelar, paso, siguiente, anterior } = useTracking();
+  const [mostrarResumen, setMostrarResumen] = useState(false);
+
+  // Determina si todas las ubicaciones están finalizadas
+  const todasFinalizadas = form.ubicaciones.every(u => u.finalizado);
+
+  // Logica para renderizar según paso global y estado finalizado
+  if (mostrarResumen || (paso === 3 && todasFinalizadas)) {
+    return (
+      <div style={{ border: "1px solid #ddd", borderRadius: 8, padding: 16, marginBottom: 20, fontFamily: "Arial, sans-serif" }}>
+        <ResumenFinal />
+        <div style={{ marginTop: 20 }}>
+          <button
+            onClick={() => {
+              guardar();
+              setMostrarResumen(false);
+            }}
+            style={{ padding: "10px 15px" }}
+          >
+            Guardar Tracking
+          </button>
+          <button
+            onClick={() => {
+              cancelar();
+            }}
+            style={{ padding: "10px 15px", marginLeft: 12 }}
+          >
+            Cancelar
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div style={{
-      border: "1px solid #ddd",
-      borderRadius: 8,
-      padding: 16,
-      marginBottom: 20,
-      fontFamily: "Arial, sans-serif"
-    }}>
+    <div style={{ border: "1px solid #ddd", borderRadius: 8, padding: 16, marginBottom: 20, fontFamily: "Arial, sans-serif" }}>
       {paso === 1 && <DatosBasicos />}
       {paso === 2 && <Ubicaciones />}
       {paso === 3 && <NotasConfirmacion />}
@@ -131,7 +220,12 @@ function RegistroCarga() {
         {paso < 3 ? (
           <button type="button" onClick={siguiente}>Siguiente</button>
         ) : (
-          <button type="button" onClick={guardar}>Guardar carga</button>
+          <button
+            type="button"
+            onClick={() => setMostrarResumen(true)}
+          >
+            Ver Resumen y Guardar
+          </button>
         )}
       </div>
     </div>
