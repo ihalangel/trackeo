@@ -923,8 +923,10 @@ const LoginFlow = () => {
     switch (role) {
       case "driver": return "/driver";
       case "comprobador": return "/comprobador";
+      case "admin": return "/admin";
       case "master": return "/master";
       case "super-admin": return "/superadmin";
+
       default: return "/";
     }
   }

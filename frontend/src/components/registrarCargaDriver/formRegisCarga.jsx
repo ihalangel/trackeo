@@ -4,7 +4,7 @@ import ValidacionCodigoAcceso from "./components/ValidacionCodigoAcceso.jsx";
 import SelectorCamion from "./components/SelectorCamion.jsx";
 import Paso3CargaDinamica from "./components/Paso3CargaDinamica.jsx";
 import CamposAdicionales from "./components/CamposAdicionales.jsx";
-// import useManejoArchivos from "./components/manejoArchivos.jsx";
+import useManejoArchivos from "./components/manejoArchivos.jsx";
 
 const FormularioWizardTrackingYarda = ({ userSession, onSubmit, onClose }) => {
   const [step, setStep] = useState(1);
@@ -271,13 +271,13 @@ const FormularioWizardTrackingYarda = ({ userSession, onSubmit, onClose }) => {
           )}
           {!logueado && tienePerfil === false && !codigoValido && (
             <>
-              <ValidacionCodigoAcceso
+           {/*   <ValidacionCodigoAcceso
                 codigoAcceso={codigoAcceso}
                 setCodigoAcceso={setCodigoAcceso}
                 validarCodigo={validarCodigoAcceso}
                 errorCodigo={errorCodigo || errores.codigoAcceso}
                 onVolver={() => setTienePerfil(null)}
-              />
+              />*/}
             </>
           )}
           {(logueado || codigoValido) && (

@@ -49,20 +49,41 @@ const useManejoArchivos = (archivos) => {
   };
 
   // Crear URLs para previsualización
-  useEffect(() => {
-    const nuevosPreviews = {};
-    Object.entries(archivos).forEach(([key, archivo]) => {
-      if (archivo) {
-        nuevosPreviews[key] = URL.createObjectURL(archivo);
-      }
-    });
-    setPreviews(nuevosPreviews);
+  // useEffect(() => {
+  //   const nuevosPreviews = {};
+  //   Object.entries(archivos).forEach(([key, archivo]) => {
+  //     if (archivo) {
+  //       nuevosPreviews[key] = URL.createObjectURL(archivo);
+  //     }
+  //   });
+  //   setPreviews(nuevosPreviews);
 
-    return () => {
-      Object.values(nuevosPreviews).forEach((url) => URL.revokeObjectURL(url));
-      setPreviews({});
-    };
-  }, [archivos]);
+  //   return () => {
+  //     Object.values(nuevosPreviews).forEach((url) => URL.revokeObjectURL(url));
+  //     setPreviews({});
+  //   };
+  // }, [archivos]);
+
+
+
+
+
+
+  useEffect(() => {
+  const nuevosPreviews = {};
+  Object.entries(archivos).forEach(([key, archivo]) => {
+    if (archivo) {
+      nuevosPreviews[key] = URL.createObjectURL(archivo);
+    }
+  });
+  setPreviews(nuevosPreviews);
+
+  return () => {
+    Object.values(nuevosPreviews).forEach((url) => URL.revokeObjectURL(url));
+    // No hacer setPreviews aquí
+  };
+}, [Object.values(archivos).map(f => f?.name).join(",")]); // o una dependencia menos volátil
+
 
   return { previews, errores, validarArchivo };
 };

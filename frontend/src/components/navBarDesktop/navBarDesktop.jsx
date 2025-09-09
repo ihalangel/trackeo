@@ -87,7 +87,7 @@ const renderLinksByRole = () => {
   if (user.rol === 'driver') {
     return (
       <>
-        <li><a href="/driver/dashboard" className="hover:text-gray-300">Dashboard</a></li>
+        <li><a href="/driver" className="hover:text-gray-300">Dashboard</a></li>
         <li><a href="/driver/containers" className="hover:text-gray-300">Contenedores</a></li>
         <li><a href="/driver/yards" className="hover:text-gray-300">Yardas</a></li>
         <li><a href="/driver/reports" className="hover:text-gray-300">Reportes</a></li>

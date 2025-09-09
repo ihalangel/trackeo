@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 import Webcam from "react-webcam";
 
-const webcamRef = useRef(null);
-const [captura, setCaptura] = useState(null);
+
 
 const tomarFoto = () => {
   const imageSrc = webcamRef.current.getScreenshot();
@@ -145,6 +144,9 @@ const Paso3CargaDinamica = ({
   const handleTipoChange = (e) => {
     setTipoCarga(e.target.value);
   };
+
+  const webcamRef = useRef(null);
+const [captura, setCaptura] = useState(null);
 
   return (
     <div>
