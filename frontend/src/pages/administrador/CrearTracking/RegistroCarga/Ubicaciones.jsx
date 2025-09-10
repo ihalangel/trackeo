@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import UbicacionWizard from "./Ubicaciones/UbicacionWizard";
-import { useTracking } from "./../../../../context/Dasboards/TrackingContextAdmin.jsx";
+// import { useTracking } from "./../../../../context/Dasboards/TrackingContextAdmin.jsx";
+import { TrackingProvider, useTracking } from "./../../../../context/TrackingContext/";
+
 
 
 export default function Ubicaciones() {

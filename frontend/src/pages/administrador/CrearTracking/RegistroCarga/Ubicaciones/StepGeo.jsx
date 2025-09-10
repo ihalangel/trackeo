@@ -1,5 +1,7 @@
 import React from "react";
-import { useTracking } from "./../../../../../context/Dasboards/TrackingContextAdmin.jsx";
+// import { useTracking } from "./../../../../../context/Dasboards/TrackingContextAdmin.jsx";
+import { TrackingProvider, useTracking } from "./../../../../../context/TrackingContext/";
+
 
 export default function StepGeo({ index }) {
   const { form, setForm } = useTracking();

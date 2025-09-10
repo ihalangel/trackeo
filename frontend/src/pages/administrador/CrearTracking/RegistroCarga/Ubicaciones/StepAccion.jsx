@@ -1,5 +1,6 @@
 import React from "react";
-import { useTracking } from "./../../../../../context/Dasboards/TrackingContextAdmin.jsx";
+// import { useTracking } from "./../../../../../context/Dasboards/TrackingContextAdmin.jsx";
+import { TrackingProvider, useTracking } from "./../../../../../context/TrackingContext/";
 
 export default function StepAccion({ index }) {
   const { form, handleUbicacionChange, errores, accionesUbicacion } = useTracking();
